@@ -1,10 +1,12 @@
 import React from 'react'
 
-export default function Layout({chilren}) {
+export default function Layout({children}) {
   return (
     <div>
         header
-        {chilren}
+        <div>
+          {children}
+        </div>
         footer
     </div>
   )
