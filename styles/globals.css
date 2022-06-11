@@ -4,11 +4,19 @@
   box-sizing: border-box;
 }
 
-html{
+html {
   font-size: 62.5%;
   direction: rtl;
 }
 
 body {
   font-size: 1.6rem;
+}
+
+.layout-children {
+  min-height: 80vh;
+}
+
+.header-name{
+  font-size: 1rem
 }
