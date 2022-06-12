@@ -2,6 +2,7 @@ import { AppBar, Badge, Box, Toolbar, Typography } from "@mui/material";
 import LocalFloristIcon from "@mui/icons-material/LocalFlorist";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React from "react";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -27,7 +28,11 @@ export default function Header() {
               badgeContent={1}
               color="error"
               sx={{
-                "& .MuiBadge-badge": { fontSize: '2rem', height: 22, minWidth: 15 },
+                "& .MuiBadge-badge": {
+                  fontSize: "2rem",
+                  height: 22,
+                  minWidth: 15,
+                },
               }}
             >
               <ShoppingCartIcon color="#ffffff" sx={{ fontSize: "3rem" }} />
@@ -36,7 +41,9 @@ export default function Header() {
               تست شاپ
             </Typography>
           </Box>
-          <LocalFloristIcon sx={{ fontSize: "5rem" }} />
+          <Link href="/" passHref>
+            <LocalFloristIcon sx={{ fontSize: "5rem" }} />
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
