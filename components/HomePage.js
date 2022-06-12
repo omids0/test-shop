@@ -22,7 +22,7 @@ export default function HomePage() {
     <Stack p={2}>
       {allProducts.length === 0 ? (
         <Grid container rowSpacing={8} columnSpacing={2}>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={4} md={4} lg={3}>
             <Box
               sx={{
                 margin: "0 auto",
@@ -50,7 +50,7 @@ export default function HomePage() {
               </Card>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={4} md={4} lg={3}>
             <Box
               sx={{
                 margin: "0 auto",
@@ -78,7 +78,7 @@ export default function HomePage() {
               </Card>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={4} md={4} lg={3}>
             <Box
               sx={{
                 margin: "0 auto",
@@ -106,7 +106,7 @@ export default function HomePage() {
               </Card>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={4} md={4} lg={3}>
             <Box
               sx={{
                 margin: "0 auto",
@@ -134,7 +134,7 @@ export default function HomePage() {
               </Card>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={4} md={4} lg={3}>
             <Box
               sx={{
                 margin: "0 auto",
@@ -162,7 +162,7 @@ export default function HomePage() {
               </Card>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={4} md={4} lg={3}>
             <Box
               sx={{
                 margin: "0 auto",
@@ -190,7 +190,7 @@ export default function HomePage() {
               </Card>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={4} md={4} lg={3}>
             <Box
               sx={{
                 margin: "0 auto",
@@ -218,7 +218,7 @@ export default function HomePage() {
               </Card>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={4} md={4} lg={3}>
             <Box
               sx={{
                 margin: "0 auto",
@@ -246,7 +246,7 @@ export default function HomePage() {
               </Card>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={4} md={4} lg={3}>
             <Box
               sx={{
                 margin: "0 auto",
@@ -278,7 +278,7 @@ export default function HomePage() {
       ) : (
         <Grid container rowSpacing={8} columnSpacing={2}>
           {allProducts.map((item) => (
-            <Grid item xs={12} sm={4} md={4}>
+            <Grid item xs={12} sm={4} md={4} lg={3} >
               <Box
                 sx={{
                   margin: "0 auto",
@@ -301,7 +301,7 @@ export default function HomePage() {
                       height: "30rem",
                     }}
                   >
-                    <Typography gutterBottom variant="h4" component="div">
+                    <Typography gutterBottom variant="h4" component="h1">
                       {item.title}
                     </Typography>
                     <Box
