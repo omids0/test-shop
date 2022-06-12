@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/Layout";
 import ProductShow from "../../components/ProductShow";
-// import ProductDetailes from "../../components/ProductDetailes";
 
 export default function ProductDetailes({ productName, fetchAllProducts }) {
   const [decoded, setdecoded] = useState("");
@@ -39,7 +38,7 @@ export default function ProductDetailes({ productName, fetchAllProducts }) {
   }, [products]);
 
   return (
-    <Layout>
+    <Layout title='Product details'>
         {product && <ProductShow productItem={product} />}
     </Layout>
   );
