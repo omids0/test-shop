@@ -5,18 +5,19 @@ import Layout from "../components/Layout";
 import { getAllProducts } from "../redux/actions/productsAction";
 
 export default function Home() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProducts = async () => {
       await fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
-        .then((data) => {console.log(data)
+        .then((data) => {
+          console.log(data);
           dispatch(getAllProducts(data))
         });
     };
 
-    fetchProducts()
+    fetchProducts();
   }, []);
 
   return (
