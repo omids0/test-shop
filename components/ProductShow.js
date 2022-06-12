@@ -10,24 +10,48 @@ import {
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useDispatch } from "react-redux";
+import { addToBasketAction } from "../redux/actions/basketAction";
 
 export default function ProductShow({ productItem }) {
   const [qty, setQty] = useState(1);
 
   const qtyHandler = (action) => {
-    if(qty < 1){
-    alert('مقدار صفر امکان پذیر نمیباشد')
-
+    if (qty < 1) {
+      alert("مقدار صفر امکان پذیر نمیباشد");
     }
 
-    if(action === 'minus'){
-        setQty(qty -= 1)
+    if (action === "minus") {
+      setQty((qty -= 1));
     }
 
-    if(action === 'plus'){
-        setQty(qty += 1)
+    if (action === "plus") {
+      setQty((qty += 1));
     }
-  }
+  };
+
+  const dispatch = useDispatch();
+
+  const addToBasket = (selectedProduct) => {
+    const product = {
+      category: selectedProduct.category,
+      description: selectedProduct.description,
+      id: selectedProduct.id,
+      image: selectedProduct.image,
+      price: selectedProduct.price,
+      rating: {
+        rate: selectedProduct.rating.rate,
+        count: selectedProduct.rating.count,
+      },
+      title: selectedProduct.title,
+      qty,
+      totalPrice : selectedProduct.price * Number(qty)
+    };
+
+    if (qty > 0) {
+      dispatch(addToBasketAction(product));
+    }
+  };
 
   return (
     <Stack p={4}>
@@ -78,28 +102,61 @@ export default function ProductShow({ productItem }) {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: '#e6f0ff',
-              padding: '2rem',
-              borderRadius: '10px'
+              backgroundColor: "#e6f0ff",
+              padding: "2rem",
+              borderRadius: "10px",
             }}
           >
             <Typography
               variant="h1"
               component="h1"
             >{`$ ${productItem.price}`}</Typography>
-            <Box sx={{margin: '3rem 1rem', display:'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                <Button onClick={() => qtyHandler('plus')} sx={{fontSize: '4rem', backgroundColor:'#33cc33', padding: '0', color:'#ffffff'}}>+</Button>
-                <Typography variant="h3" sx={{width:'8rem', textAlign: 'center'}}>{qty}</Typography>
-                <Button onClick={() => qtyHandler('minus')} sx={{fontSize: '4rem', backgroundColor:'#ff0000', padding: '0', color:'#ffffff'}}>-</Button>
+            <Box
+              sx={{
+                margin: "3rem 1rem",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Button
+                onClick={() => qtyHandler("plus")}
+                sx={{
+                  fontSize: "4rem",
+                  backgroundColor: "#33cc33",
+                  padding: "0",
+                  color: "#ffffff",
+                }}
+              >
+                +
+              </Button>
+              <Typography
+                variant="h3"
+                sx={{ width: "8rem", textAlign: "center" }}
+              >
+                {qty}
+              </Typography>
+              <Button
+                onClick={() => qtyHandler("minus")}
+                sx={{
+                  fontSize: "4rem",
+                  backgroundColor: "#ff0000",
+                  padding: "0",
+                  color: "#ffffff",
+                }}
+              >
+                -
+              </Button>
             </Box>
             <Button
+              onClick={() => addToBasket(productItem)}
               variant="contained"
               sx={{
                 backgroundColor: "#ffd700",
                 color: "#000000",
                 fontSize: "2.2rem",
               }}
-              endIcon={<AddShoppingCartIcon sx={{ marginRight: '3rem'}} />}
+              endIcon={<AddShoppingCartIcon sx={{ marginRight: "3rem" }} />}
             >
               {`$${productItem.price * Number(qty)}`}
             </Button>

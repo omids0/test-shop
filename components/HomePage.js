@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Stack,
   Grid,
@@ -12,12 +12,32 @@ import {
   Button,
 } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import Link from 'next/link'
+import Link from "next/link";
+import { addToBasketAction } from "../redux/actions/basketAction";
 
 export default function HomePage() {
   const allProducts = useSelector(
     (state) => state.allProductsReducer.allProducts
   );
+
+  const dispatch = useDispatch();
+
+  const addToBasket = (selectedProduct) => {
+    
+    const product = {
+      category: selectedProduct.category,
+      description: selectedProduct.description,
+      id: selectedProduct.id,
+      image: selectedProduct.image,
+      price: selectedProduct.price,
+      rating: { rate: selectedProduct.rating.rate , count: selectedProduct.rating.count },
+      title: selectedProduct.title,
+      qty: 1,
+      totalPrice : selectedProduct.price * 1
+    };
+
+    dispatch(addToBasketAction(product));
+  };
 
   return (
     <Stack p={2}>
@@ -289,12 +309,12 @@ export default function HomePage() {
               >
                 <Card sx={{ width: "300px", height: "650px" }}>
                   <Link href={`/product/${item.title}`} passHref>
-                  <CardMedia
-                    component="img"
-                    height="350"
-                    image={item.image}
-                    alt="green iguana"
-                  />
+                    <CardMedia
+                      component="img"
+                      height="350"
+                      image={item.image}
+                      alt="green iguana"
+                    />
                   </Link>
                   <CardContent
                     sx={{
@@ -317,7 +337,7 @@ export default function HomePage() {
                       }}
                     >
                       <Typography variant="h3">{`$ ${item.price}`}</Typography>
-                      <Button>
+                      <Button onClick={() => addToBasket(item)}>
                         <AddShoppingCartIcon
                           sx={{ fontSize: "3.5rem", color: "red" }}
                         />
