@@ -26,7 +26,6 @@ export default function ProductDetailes({ productName, fetchAllProducts }) {
     try {
       const decodeuri = decodeURI(encoded);
       setdecoded(decodeuri);
-      console.log(decodeURI(encoded));
     } catch (e) {
       console.error(e);
     }
@@ -37,7 +36,6 @@ export default function ProductDetailes({ productName, fetchAllProducts }) {
       (item) => item.title.replace(/\s/g, "") == decoded.replace(/\s/g, "")
     );
     setProduct(findProduct);
-    console.log(findProduct);
   }, [products]);
 
   return (
