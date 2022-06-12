@@ -12,6 +12,7 @@ import {
   Button,
 } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import Link from 'next/link'
 
 export default function HomePage() {
   const allProducts = useSelector(
@@ -278,7 +279,7 @@ export default function HomePage() {
       ) : (
         <Grid container rowSpacing={8} columnSpacing={2}>
           {allProducts.map((item) => (
-            <Grid item xs={12} sm={4} md={4} lg={3} >
+            <Grid item xs={12} sm={4} md={4} lg={3} key={item.id}>
               <Box
                 sx={{
                   margin: "0 auto",
@@ -287,12 +288,14 @@ export default function HomePage() {
                 }}
               >
                 <Card sx={{ width: "300px", height: "650px" }}>
+                  <Link href={`/product/${item.title}`} passHref>
                   <CardMedia
                     component="img"
                     height="350"
                     image={item.image}
                     alt="green iguana"
                   />
+                  </Link>
                   <CardContent
                     sx={{
                       display: "flex",
