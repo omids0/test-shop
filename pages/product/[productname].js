@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/Layout";
+import ProductShow from "../../components/ProductShow";
+// import ProductDetailes from "../../components/ProductDetailes";
 
 export default function ProductDetailes({ productName, fetchAllProducts }) {
   const [decoded, setdecoded] = useState("");
@@ -34,10 +36,15 @@ export default function ProductDetailes({ productName, fetchAllProducts }) {
     const findProduct = products.find(
       (item) => item.title.replace(/\s/g, "") == decoded.replace(/\s/g, "")
     );
+    setProduct(findProduct);
     console.log(findProduct);
   }, [products]);
 
-  return <Layout>{productName}</Layout>;
+  return (
+    <Layout>
+        {product && <ProductShow productItem={product} />}
+    </Layout>
+  );
 }
 
 export async function getServerSideProps(context) {
