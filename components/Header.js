@@ -24,6 +24,7 @@ export default function Header() {
               justifyContent: "space-between",
             }}
           >
+            <Link href='/basket' passHref>
             <Badge
               badgeContent={1}
               color="error"
@@ -37,6 +38,7 @@ export default function Header() {
             >
               <ShoppingCartIcon color="#ffffff" sx={{ fontSize: "3rem" }} />
             </Badge>
+            </Link>
             <Typography variant="h1" component="h1" sx={{ fontSize: "3rem" }}>
               تست شاپ
             </Typography>
