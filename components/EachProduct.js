@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -18,10 +18,18 @@ import {
 } from "../redux/actions/basketAction";
 
 export default function EachProduct({ item }) {
-  useSelector;
+  const basket = useSelector((state) => state.basketItemReducer.basketItems);
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
   const [selection, setSelection] = useState(false);
+
+  useEffect(() => {
+    const checkBasket = basket.find((product) => product.id === item.id);
+    if (checkBasket) {
+      setSelection(true);
+      setQty(checkBasket.qty)
+    }
+  }, []);
 
   const addToBasket = (selectedProduct) => {
     setSelection(true);
@@ -121,7 +129,7 @@ export default function EachProduct({ item }) {
                     <Typography
                       variant="h4"
                       sx={{
-                        width: "2rem",
+                        width: "3rem",
                         textAlign: "center",
                         color: "#000000",
                       }}
