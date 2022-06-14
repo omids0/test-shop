@@ -1,43 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Stack,
   Grid,
   Card,
   Skeleton,
   Box,
-  CardMedia,
-  CardContent,
-  Typography,
-  Button,
 } from "@mui/material";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import Link from "next/link";
-import { addToBasketAction } from "../redux/actions/basketAction";
+import EachProduct from "./EachProduct";
 
 export default function HomePage() {
   const allProducts = useSelector(
     (state) => state.allProductsReducer.allProducts
   );
-
-  const dispatch = useDispatch();
-
-  const addToBasket = (selectedProduct) => {
-    
-    const product = {
-      category: selectedProduct.category,
-      description: selectedProduct.description,
-      id: selectedProduct.id,
-      image: selectedProduct.image,
-      price: selectedProduct.price,
-      rating: { rate: selectedProduct.rating.rate , count: selectedProduct.rating.count },
-      title: selectedProduct.title,
-      qty: 1,
-      totalPrice : selectedProduct.price * 1
-    };
-
-    dispatch(addToBasketAction(product));
-  };
 
   return (
     <Stack p={2}>
@@ -299,55 +274,7 @@ export default function HomePage() {
       ) : (
         <Grid container rowSpacing={8} columnSpacing={2}>
           {allProducts.map((item) => (
-            <Grid item xs={12} sm={4} md={4} lg={3} key={item.id}>
-              <Box
-                sx={{
-                  margin: "0 auto",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <Card sx={{ width: "300px", height: "650px" }}>
-                  <Link href={`/product/${item.title}`} passHref>
-                    <CardMedia
-                      component="img"
-                      width='200'
-                      height="400"
-                      image={item.image}
-                      alt={item.title}
-                    />
-                  </Link>
-                  <CardContent
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      height: "25rem",
-                    }}
-                  >
-                    <Typography gutterBottom variant="h4" component="h1">
-                      {item.title}
-                    </Typography>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        width: "100%",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <Typography variant="h3">{`$ ${item.price}`}</Typography>
-                      <Button onClick={() => addToBasket(item)}>
-                        <AddShoppingCartIcon
-                          sx={{ fontSize: "3.5rem", color: "red" }}
-                        />
-                      </Button>
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Box>
-            </Grid>
+            <EachProduct item={item} />
           ))}
         </Grid>
       )}

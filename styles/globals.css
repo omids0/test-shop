@@ -27,3 +27,6 @@ body {
   align-items: center;
   height: 80vh;
 }
+.item-select{
+  font-size: 2.5rem;
+}
