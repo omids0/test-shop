@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import BasketItems from "./BasketItems";
 import EmptyBasket from "./EmptyBasket";
 import Layout from "./Layout";
 
@@ -8,11 +9,17 @@ export default function Basket() {
     (state) => state.basketItemReducer.basketItems
   );
 
-  if(basketLentgh.length < 1){
-    return <Layout title={`Basket is empty`}>
-      <EmptyBasket />
-    </Layout>
+  if (basketLentgh.length === 0) {
+    return (
+      <Layout title={`Basket is empty`}>
+        <EmptyBasket />
+      </Layout>
+    );
   }
 
-  return <Layout title={`Basket (${basketLentgh.length})`}>Basket</Layout>;
+  return (
+    <Layout title={`Basket (${basketLentgh.length})`}>
+      <BasketItems />
+    </Layout>
+  );
 }

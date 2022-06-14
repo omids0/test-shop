@@ -17,16 +17,14 @@ export default function ProductShow({ productItem }) {
   const [qty, setQty] = useState(1);
 
   const qtyHandler = (action) => {
-    if (qty < 1) {
-      alert("مقدار صفر امکان پذیر نمیباشد");
-    }
+    if (qty >= 1) {
+      if (action === "minus" && qty > 1) {
+        setQty((qty -= 1));
+      }
 
-    if (action === "minus") {
-      setQty((qty -= 1));
-    }
-
-    if (action === "plus") {
-      setQty((qty += 1));
+      if (action === "plus") {
+        setQty((qty += 1));
+      }
     }
   };
 
@@ -45,7 +43,7 @@ export default function ProductShow({ productItem }) {
       },
       title: selectedProduct.title,
       qty,
-      totalPrice : selectedProduct.price * Number(qty)
+      totalPrice: selectedProduct.price * Number(qty),
     };
 
     if (qty > 0) {

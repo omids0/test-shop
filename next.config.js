@@ -3,4 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-module.exports = nextConfig
+// module.exports = nextConfig
+
+module.exports = {
+  images: {
+    domains: ['fakestoreapi.com'],
+  },
+  nextConfig: nextConfig
+}
