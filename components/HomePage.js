@@ -311,9 +311,10 @@ export default function HomePage() {
                   <Link href={`/product/${item.title}`} passHref>
                     <CardMedia
                       component="img"
-                      height="350"
+                      width='200'
+                      height="400"
                       image={item.image}
-                      alt="green iguana"
+                      alt={item.title}
                     />
                   </Link>
                   <CardContent
@@ -321,7 +322,7 @@ export default function HomePage() {
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
-                      height: "30rem",
+                      height: "25rem",
                     }}
                   >
                     <Typography gutterBottom variant="h4" component="h1">

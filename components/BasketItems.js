@@ -7,7 +7,6 @@ import { addToBasketAction, removeFromBasketAction } from "../redux/actions/bask
 
 export default function BasketItems() {
   const basket = useSelector((state) => state.basketItemReducer.basketItems);
-  console.log(basket);
   const dispatch = useDispatch()
 
   const qtyHandler = (action, qty, item) => {
@@ -38,7 +37,6 @@ export default function BasketItems() {
         totalPrice: item.price * Number(qty),
       };
       dispatch(addToBasketAction(product));
-      console.log(action, newQty, product);
     }
   };
 
@@ -58,7 +56,7 @@ export default function BasketItems() {
       >
         <Stack sx={{ display: "flex", flexDirection: "column" }}>
           {basket.map((item) => (
-            <Card sx={{ marginBottom: "2rem", padding: "1rem" }}>
+            <Card sx={{ marginBottom: "2rem", padding: "1rem", width: { lg: '50rem'} }}>
               <Typography variant="h4" color="text.main">
                 {item.title}
               </Typography>
