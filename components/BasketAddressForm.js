@@ -3,8 +3,12 @@ import React from "react";
 
 export default function BasketAddressForm({ basket }) {
   const totalPrice = basket.reduce((c, x) => c + x.totalPrice, 0);
+  const payHandler = () => {
+    alert('پرداخت شما با موفقیت انجام شد.')
+    window.location.href = '/'
+  }
   return (
-    <Stack mt={4}>
+    <Stack mt={4} p={2} borderRadius='7px' backgroundColor='#f2f2f2'>
       <Stack>
         <input
           type="number"
@@ -22,6 +26,7 @@ export default function BasketAddressForm({ basket }) {
       </Stack>
       <Button
         variant="contained"
+        onClick={payHandler}
         sx={{
           my: "2rem",
           fontSize: "2rem",
