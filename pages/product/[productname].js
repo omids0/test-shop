@@ -16,11 +16,9 @@ export default function ProductDetailes({ productName, fetchAllProducts }) {
     const uri = productName;
     const encoded = encodeURI(uri);
 
-    {
-      productsState.length > 0
-        ? setProducts(productsState)
-        : setProducts(fetchAllProducts);
-    }
+    productsState.length > 0
+      ? setProducts(productsState)
+      : setProducts(fetchAllProducts);
 
     try {
       const decodeuri = decodeURI(encoded);
@@ -38,8 +36,8 @@ export default function ProductDetailes({ productName, fetchAllProducts }) {
   }, [products]);
 
   return (
-    <Layout title='Product details'>
-        {product && <ProductShow productItem={product} />}
+    <Layout title="Product details">
+      {product && <ProductShow productItem={product} />}
     </Layout>
   );
 }

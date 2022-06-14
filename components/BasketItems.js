@@ -3,17 +3,20 @@ import { Box } from "@mui/system";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
-import { addToBasketAction, removeFromBasketAction } from "../redux/actions/basketAction";
+import {
+  addToBasketAction,
+  removeFromBasketAction,
+} from "../redux/actions/basketAction";
+import BasketAddressForm from "./BasketAddressForm";
 
 export default function BasketItems() {
   const basket = useSelector((state) => state.basketItemReducer.basketItems);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const qtyHandler = (action, qty, item) => {
-    let newQty = qty
+    let newQty = qty;
 
     if (qty >= 1) {
-      
       if (action === "minus" && qty > 1) {
         newQty--;
       }
@@ -34,7 +37,7 @@ export default function BasketItems() {
         },
         title: item.title,
         qty: newQty,
-        totalPrice: item.price * Number(qty),
+        totalPrice: item.price * Number(newQty),
       };
       dispatch(addToBasketAction(product));
     }
@@ -56,7 +59,13 @@ export default function BasketItems() {
       >
         <Stack sx={{ display: "flex", flexDirection: "column" }}>
           {basket.map((item) => (
-            <Card sx={{ marginBottom: "2rem", padding: "1rem", width: { lg: '50rem'} }}>
+            <Card
+              sx={{
+                marginBottom: "2rem",
+                padding: "1rem",
+                width: { lg: "50rem" },
+              }}
+            >
               <Typography variant="h4" color="text.main">
                 {item.title}
               </Typography>
@@ -92,6 +101,9 @@ export default function BasketItems() {
                       backgroundColor: "#33cc33",
                       padding: "0",
                       color: "#ffffff",
+                      "&:hover": {
+                        backgroundColor: "#33cc33",
+                      },
                     }}
                   >
                     +
@@ -109,6 +121,9 @@ export default function BasketItems() {
                       backgroundColor: "#ff1a1a",
                       padding: "0",
                       color: "#ffffff",
+                      "&:hover": {
+                        backgroundColor: "#ff1a1a",
+                      },
                     }}
                   >
                     -
@@ -132,7 +147,13 @@ export default function BasketItems() {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "#ff0000", fontSize: "1.6rem" }}
+                  sx={{
+                    backgroundColor: "#ff0000",
+                    fontSize: "1.6rem",
+                    "&:hover": {
+                      backgroundColor: "#ff0000",
+                    },
+                  }}
                   onClick={() => dispatch(removeFromBasketAction(item.id))}
                 >
                   حذف
@@ -142,10 +163,7 @@ export default function BasketItems() {
           ))}
         </Stack>
         <Stack direction="column">
-          <Card>form</Card>
-          <Button variant="contained" sx={{ my: "2rem" }}>
-            taaid va sabt
-          </Button>
+          <BasketAddressForm basket={basket} />
         </Stack>
       </Stack>
     </Stack>

@@ -45,7 +45,7 @@ export default function EachProduct({ item }) {
       },
       title: selectedProduct.title,
       qty,
-      totalPrice: selectedProduct.price * 1,
+      totalPrice: selectedProduct.price * qty,
     };
     if (qty > 0) {
       dispatch(addToBasketAction(product));
