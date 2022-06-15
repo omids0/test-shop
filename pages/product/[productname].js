@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import Layout from "../../components/Layout";
 import ProductShow from "../../components/ProductShow";
+import { getBasketItems } from "../../redux/reducers/basketReducer";
 
 export default function ProductDetailes({ productName, fetchAllProducts }) {
   const [decoded, setdecoded] = useState("");
@@ -11,6 +12,8 @@ export default function ProductDetailes({ productName, fetchAllProducts }) {
   const productsState = useSelector(
     (state) => state.allProductsReducer.allProducts
   );
+
+  // const d = useSelector(getBasketItems)
 
   useEffect(() => {
     const uri = productName;
@@ -38,6 +41,8 @@ export default function ProductDetailes({ productName, fetchAllProducts }) {
   return (
     <Layout title="Product details">
       {product && <ProductShow productItem={product} />}
+
+
     </Layout>
   );
 }

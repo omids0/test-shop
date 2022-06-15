@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
@@ -9,7 +10,12 @@ const finalReducers = combineReducers({
   basketItemReducer: basketItemReducer,
 });
 
-const initialState = {};
+const basket = Cookies.get("user-basket")
+  ? JSON.parse(Cookies.get("user-basket"))
+  : [];
+const initialState = {
+  basketItemReducer: { basketItems: basket },
+};
 
 const composeEnhancer = composeWithDevTools({});
 
