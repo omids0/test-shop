@@ -1,12 +1,20 @@
 import { AppBar, Badge, Box, Toolbar, Typography } from "@mui/material";
 import LocalFloristIcon from "@mui/icons-material/LocalFlorist";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import { getBasketItems } from "../redux/reducers/basketReducer";
 
 export default function Header() {
-  const basketLentgh = useSelector(state => state.basketItemReducer.basketItems)
+  // const basketLentgh = useSelector(state => state.basketItemReducer.basketItems)
+  const basketState = useSelector(getBasketItems)
+  const [badgeContent, setbadgeContent] = useState(0)
+
+  useEffect(() => {
+    setbadgeContent(basketState.length > 0 ? basketState.length : 0)
+  }, [basketState])
+  
 
   return (
     <Box sx={{ flexGrow: 1, marginBottom: "2rem" }}>
@@ -29,7 +37,7 @@ export default function Header() {
           >
             <Link href='/basket' passHref>
             <Badge
-              badgeContent={basketLentgh.length}
+              badgeContent={badgeContent}
               color="error"
               sx={{
                 "& .MuiBadge-badge": {
